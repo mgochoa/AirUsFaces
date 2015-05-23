@@ -9,6 +9,8 @@ import co.edu.udea.arqsw.aerolinea.dto.Vuelo;
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
+import java.util.List;
+import javax.persistence.Query;
 
 /**
  *
@@ -34,4 +36,16 @@ public class VueloDao implements VueloDaoLocal {
     public void modificar(Vuelo vuelo) {
         em.merge(vuelo);
     }
+
+    @Override
+    public List<Vuelo> obtenerTodos() {
+        try {
+            Query q = em.createNamedQuery("Vuelo.findAll");  //se crea la consulta EQL
+            return q.getResultList();
+        } catch (Exception e) {
+            System.out.println("Error en :" + e);
+            return null;
+        }
+    }
+
 }

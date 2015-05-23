@@ -7,6 +7,7 @@ package co.edu.udea.arqsw.aerolinea.dao;
 
 import co.edu.udea.arqsw.aerolinea.dto.Vuelo;
 import javax.ejb.Local;
+import java.util.List;
 
 /**
  *
@@ -20,5 +21,7 @@ public interface VueloDaoLocal {
     void registrar(Vuelo vuelo);
 
     void modificar(Vuelo vuelo);
+
+    List<Vuelo> obtenerTodos();
 
 }

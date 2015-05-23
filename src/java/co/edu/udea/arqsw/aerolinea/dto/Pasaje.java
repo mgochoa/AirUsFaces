@@ -7,6 +7,7 @@ package co.edu.udea.arqsw.aerolinea.dto;
 
 import java.io.Serializable;
 import javax.persistence.Column;
+import javax.persistence.JoinColumn;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -28,7 +29,7 @@ public class Pasaje implements Serializable {
     @Column(name = "clase")
     private String clase;
 
-    @Column(name = "vuelo")
+    @JoinColumn(name = "vuelo")
     @ManyToOne
     private Vuelo vuelo;
 

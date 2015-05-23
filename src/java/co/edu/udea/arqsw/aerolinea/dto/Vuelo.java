@@ -15,6 +15,8 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.persistence.NamedQueries;
+import javax.persistence.NamedQuery;
 import javax.persistence.Temporal;
 
 /**
@@ -22,6 +24,12 @@ import javax.persistence.Temporal;
  * @author dx
  */
 @Entity
+@NamedQueries({
+    @NamedQuery(name = "Vuelo.findAll", query = "SELECT v FROM Vuelo v"),
+    @NamedQuery(name = "Vuelo.findById", query = "SELECT v FROM Vuelo v WHERE v.id = :id"),
+    @NamedQuery(name = "Vuelo.buscarPorHora", query = "SELECT v FROM Vuelo v WHERE v.horaSalida = :horaSalida"),
+    @NamedQuery(name = "Vuelo.buscarPorOrigen", query = "SELECT v FROM Vuelo v WHERE v.origen = :origen"),
+    @NamedQuery(name = "Vuelo.buscarPorDestino", query = "SELECT v FROM Vuelo v WHERE v.destino = :destino")})
 public class Vuelo implements Serializable {
 
     private static final long serialVersionUID = 1L;
