@@ -41,9 +41,9 @@
                         </p:column>
                         <p:column>
                             <f:facet name="header">
-                                <h:outputText value="#{bundle.ListCompraTitle_vuelo}"/>
+                                <h:outputText value="#{bundle.ListCompraTitle_pasaje}"/>
                             </f:facet>
-                            <h:outputText value="#{item.vuelo}"/>
+                            <h:outputText value="#{item.pasaje}"/>
                         </p:column>
                         <f:facet name="footer">
                             <p:commandButton id="createButton" icon="ui-icon-plus"   value="#{bundle.Create}" actionListener="#{compraController.prepareCreate}" update=":CompraCreateForm" oncomplete="PF('CompraCreateDialog').show()"/>

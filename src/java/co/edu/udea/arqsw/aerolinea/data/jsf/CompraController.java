@@ -1,9 +1,9 @@
-package co.edu.udea.arqsw.aerolinea.jsf;
+package co.edu.udea.arqsw.aerolinea.data.jsf;
 
-import co.edu.udea.arqsw.aerolinea.data.dto.Vuelo;
-import co.edu.udea.arqsw.aerolinea.jsf.util.JsfUtil;
-import co.edu.udea.arqsw.aerolinea.jsf.util.JsfUtil.PersistAction;
-import co.edu.udea.arqsw.aerolinea.sessionbeans.VueloFacade;
+import co.edu.udea.arqsw.aerolinea.data.dto.Compra;
+import co.edu.udea.arqsw.aerolinea.data.jsf.util.JsfUtil;
+import co.edu.udea.arqsw.aerolinea.data.jsf.util.JsfUtil.PersistAction;
+import co.edu.udea.arqsw.aerolinea.data.sessionbeans.CompraFacade;
 
 import java.io.Serializable;
 import java.util.List;
@@ -19,23 +19,23 @@ import javax.faces.context.FacesContext;
 import javax.faces.convert.Converter;
 import javax.faces.convert.FacesConverter;
 
-@ManagedBean(name = "vueloController")
+@ManagedBean(name = "compraController")
 @SessionScoped
-public class VueloController implements Serializable {
+public class CompraController implements Serializable {
 
     @EJB
-    private co.edu.udea.arqsw.aerolinea.sessionbeans.VueloFacade ejbFacade;
-    private List<Vuelo> items = null;
-    private Vuelo selected;
+    private co.edu.udea.arqsw.aerolinea.data.sessionbeans.CompraFacade ejbFacade;
+    private List<Compra> items = null;
+    private Compra selected;
 
-    public VueloController() {
+    public CompraController() {
     }
 
-    public Vuelo getSelected() {
+    public Compra getSelected() {
         return selected;
     }
 
-    public void setSelected(Vuelo selected) {
+    public void setSelected(Compra selected) {
         this.selected = selected;
     }
 
@@ -45,36 +45,36 @@ public class VueloController implements Serializable {
     protected void initializeEmbeddableKey() {
     }
 
-    private VueloFacade getFacade() {
+    private CompraFacade getFacade() {
         return ejbFacade;
     }
 
-    public Vuelo prepareCreate() {
-        selected = new Vuelo();
+    public Compra prepareCreate() {
+        selected = new Compra();
         initializeEmbeddableKey();
         return selected;
     }
 
     public void create() {
-        persist(PersistAction.CREATE, ResourceBundle.getBundle("/Bundle").getString("VueloCreated"));
+        persist(PersistAction.CREATE, ResourceBundle.getBundle("/Bundle").getString("CompraCreated"));
         if (!JsfUtil.isValidationFailed()) {
             items = null;    // Invalidate list of items to trigger re-query.
         }
     }
 
     public void update() {
-        persist(PersistAction.UPDATE, ResourceBundle.getBundle("/Bundle").getString("VueloUpdated"));
+        persist(PersistAction.UPDATE, ResourceBundle.getBundle("/Bundle").getString("CompraUpdated"));
     }
 
     public void destroy() {
-        persist(PersistAction.DELETE, ResourceBundle.getBundle("/Bundle").getString("VueloDeleted"));
+        persist(PersistAction.DELETE, ResourceBundle.getBundle("/Bundle").getString("CompraDeleted"));
         if (!JsfUtil.isValidationFailed()) {
             selected = null; // Remove selection
             items = null;    // Invalidate list of items to trigger re-query.
         }
     }
 
-    public List<Vuelo> getItems() {
+    public List<Compra> getItems() {
         if (items == null) {
             items = getFacade().findAll();
         }
@@ -109,24 +109,24 @@ public class VueloController implements Serializable {
         }
     }
 
-    public List<Vuelo> getItemsAvailableSelectMany() {
+    public List<Compra> getItemsAvailableSelectMany() {
         return getFacade().findAll();
     }
 
-    public List<Vuelo> getItemsAvailableSelectOne() {
+    public List<Compra> getItemsAvailableSelectOne() {
         return getFacade().findAll();
     }
 
-    @FacesConverter(forClass = Vuelo.class)
-    public static class VueloControllerConverter implements Converter {
+    @FacesConverter(forClass = Compra.class)
+    public static class CompraControllerConverter implements Converter {
 
         @Override
         public Object getAsObject(FacesContext facesContext, UIComponent component, String value) {
             if (value == null || value.length() == 0) {
                 return null;
             }
-            VueloController controller = (VueloController) facesContext.getApplication().getELResolver().
-                    getValue(facesContext.getELContext(), null, "vueloController");
+            CompraController controller = (CompraController) facesContext.getApplication().getELResolver().
+                    getValue(facesContext.getELContext(), null, "compraController");
             return controller.getFacade().find(getKey(value));
         }
 
@@ -147,11 +147,11 @@ public class VueloController implements Serializable {
             if (object == null) {
                 return null;
             }
-            if (object instanceof Vuelo) {
-                Vuelo o = (Vuelo) object;
+            if (object instanceof Compra) {
+                Compra o = (Compra) object;
                 return getStringKey(o.getId());
             } else {
-                Logger.getLogger(this.getClass().getName()).log(Level.SEVERE, "object {0} is of type {1}; expected type: {2}", new Object[]{object, object.getClass().getName(), Vuelo.class.getName()});
+                Logger.getLogger(this.getClass().getName()).log(Level.SEVERE, "object {0} is of type {1}; expected type: {2}", new Object[]{object, object.getClass().getName(), Compra.class.getName()});
                 return null;
             }
         }

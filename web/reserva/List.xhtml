@@ -41,9 +41,9 @@
                         </p:column>
                         <p:column>
                             <f:facet name="header">
-                                <h:outputText value="#{bundle.ListReservaTitle_vuelo}"/>
+                                <h:outputText value="#{bundle.ListReservaTitle_pasaje}"/>
                             </f:facet>
-                            <h:outputText value="#{item.vuelo}"/>
+                            <h:outputText value="#{item.pasaje}"/>
                         </p:column>
                         <f:facet name="footer">
                             <p:commandButton id="createButton" icon="ui-icon-plus"   value="#{bundle.Create}" actionListener="#{reservaController.prepareCreate}" update=":ReservaCreateForm" oncomplete="PF('ReservaCreateDialog').show()"/>

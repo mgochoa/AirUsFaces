@@ -14,6 +14,8 @@
                     <p:panelGrid columns="2" rendered="#{pasajeController.selected != null}">
                         <h:outputText value="#{bundle.ViewPasajeLabel_id}"/>
                         <h:outputText value="#{pasajeController.selected.id}" title="#{bundle.ViewPasajeTitle_id}"/>
+                        <h:outputText value="#{bundle.ViewPasajeLabel_precio}"/>
+                        <h:outputText value="#{pasajeController.selected.precio}" title="#{bundle.ViewPasajeTitle_precio}"/>
                         <h:outputText value="#{bundle.ViewPasajeLabel_clase}"/>
                         <h:outputText value="#{pasajeController.selected.clase}" title="#{bundle.ViewPasajeTitle_clase}"/>
                         <h:outputText value="#{bundle.ViewPasajeLabel_vuelo}"/>

@@ -1,4 +1,4 @@
-package co.edu.udea.arqsw.aerolinea.jsf.util;
+package co.edu.udea.arqsw.aerolinea.data.jsf.util;
 
 import java.util.List;
 import javax.faces.application.FacesMessage;

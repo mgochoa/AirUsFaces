@@ -3,9 +3,9 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package co.edu.udea.arqsw.aerolinea.sessionbeans;
+package co.edu.udea.arqsw.aerolinea.data.sessionbeans;
 
-import co.edu.udea.arqsw.aerolinea.data.dto.Cliente;
+import co.edu.udea.arqsw.aerolinea.data.dto.Compra;
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
@@ -15,7 +15,7 @@ import javax.persistence.PersistenceContext;
  * @author felipe
  */
 @Stateless
-public class ClienteFacade extends AbstractFacade<Cliente> {
+public class CompraFacade extends AbstractFacade<Compra> {
     @PersistenceContext(unitName = "AerolineaPU")
     private EntityManager em;
 
@@ -24,8 +24,8 @@ public class ClienteFacade extends AbstractFacade<Cliente> {
         return em;
     }
 
-    public ClienteFacade() {
-        super(Cliente.class);
+    public CompraFacade() {
+        super(Compra.class);
     }
     
 }

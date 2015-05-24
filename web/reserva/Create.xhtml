@@ -20,11 +20,11 @@
                                            var="clienteItem"
                                            itemValue="#{clienteItem}"/>
                         </p:selectOneMenu>
-                        <p:outputLabel value="#{bundle.CreateReservaLabel_vuelo}" for="vuelo" />
-                        <p:selectOneMenu id="vuelo" value="#{reservaController.selected.vuelo}" >
-                            <f:selectItems value="#{vueloController.itemsAvailableSelectOne}"
-                                           var="vueloItem"
-                                           itemValue="#{vueloItem}"/>
+                        <p:outputLabel value="#{bundle.CreateReservaLabel_pasaje}" for="pasaje" />
+                        <p:selectOneMenu id="pasaje" value="#{reservaController.selected.pasaje}" >
+                            <f:selectItems value="#{pasajeController.itemsAvailableSelectOne}"
+                                           var="pasajeItem"
+                                           itemValue="#{pasajeItem}"/>
                         </p:selectOneMenu>
                     </p:panelGrid>
                     <p:commandButton actionListener="#{reservaController.create}" value="#{bundle.Save}" update="display,:ReservaListForm:datalist,:growl" oncomplete="handleSubmit(args,'ReservaCreateDialog');"/>

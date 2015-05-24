@@ -14,8 +14,15 @@
                     <p:panelGrid columns="2" rendered="#{pasajeController.selected != null}">
                         <p:outputLabel value="#{bundle.EditPasajeLabel_id}" for="id" />
                         <p:inputText id="id" value="#{pasajeController.selected.id}" title="#{bundle.EditPasajeTitle_id}" />
+                        <p:outputLabel value="#{bundle.EditPasajeLabel_precio}" for="precio" />
+                        <p:inputText id="precio" value="#{pasajeController.selected.precio}" title="#{bundle.EditPasajeTitle_precio}" />
                         <p:outputLabel value="#{bundle.EditPasajeLabel_clase}" for="clase" />
-                        <p:inputText id="clase" value="#{pasajeController.selected.clase}" title="#{bundle.EditPasajeTitle_clase}" />
+                        <p:selectOneMenu id="clase" value="#{pasajeController.selected.clase}" >
+                            <f:selectItem itemLabel="#{bundle.SelectOneMessage}"/>
+                            <f:selectItems value="#{claseController.itemsAvailableSelectOne}"
+                                           var="claseItem"
+                                           itemValue="#{claseItem}"/>
+                        </p:selectOneMenu>
                         <p:outputLabel value="#{bundle.EditPasajeLabel_vuelo}" for="vuelo" />
                         <p:selectOneMenu id="vuelo" value="#{pasajeController.selected.vuelo}" >
                             <f:selectItem itemLabel="#{bundle.SelectOneMessage}"/>

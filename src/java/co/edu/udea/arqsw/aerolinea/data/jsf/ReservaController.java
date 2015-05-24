@@ -1,9 +1,9 @@
-package co.edu.udea.arqsw.aerolinea.jsf;
+package co.edu.udea.arqsw.aerolinea.data.jsf;
 
-import co.edu.udea.arqsw.aerolinea.data.dto.Socio;
-import co.edu.udea.arqsw.aerolinea.jsf.util.JsfUtil;
-import co.edu.udea.arqsw.aerolinea.jsf.util.JsfUtil.PersistAction;
-import co.edu.udea.arqsw.aerolinea.sessionbeans.SocioFacade;
+import co.edu.udea.arqsw.aerolinea.data.dto.Reserva;
+import co.edu.udea.arqsw.aerolinea.data.jsf.util.JsfUtil;
+import co.edu.udea.arqsw.aerolinea.data.jsf.util.JsfUtil.PersistAction;
+import co.edu.udea.arqsw.aerolinea.data.sessionbeans.ReservaFacade;
 
 import java.io.Serializable;
 import java.util.List;
@@ -19,23 +19,23 @@ import javax.faces.context.FacesContext;
 import javax.faces.convert.Converter;
 import javax.faces.convert.FacesConverter;
 
-@ManagedBean(name = "socioController")
+@ManagedBean(name = "reservaController")
 @SessionScoped
-public class SocioController implements Serializable {
+public class ReservaController implements Serializable {
 
     @EJB
-    private co.edu.udea.arqsw.aerolinea.sessionbeans.SocioFacade ejbFacade;
-    private List<Socio> items = null;
-    private Socio selected;
+    private co.edu.udea.arqsw.aerolinea.data.sessionbeans.ReservaFacade ejbFacade;
+    private List<Reserva> items = null;
+    private Reserva selected;
 
-    public SocioController() {
+    public ReservaController() {
     }
 
-    public Socio getSelected() {
+    public Reserva getSelected() {
         return selected;
     }
 
-    public void setSelected(Socio selected) {
+    public void setSelected(Reserva selected) {
         this.selected = selected;
     }
 
@@ -45,36 +45,36 @@ public class SocioController implements Serializable {
     protected void initializeEmbeddableKey() {
     }
 
-    private SocioFacade getFacade() {
+    private ReservaFacade getFacade() {
         return ejbFacade;
     }
 
-    public Socio prepareCreate() {
-        selected = new Socio();
+    public Reserva prepareCreate() {
+        selected = new Reserva();
         initializeEmbeddableKey();
         return selected;
     }
 
     public void create() {
-        persist(PersistAction.CREATE, ResourceBundle.getBundle("/Bundle").getString("SocioCreated"));
+        persist(PersistAction.CREATE, ResourceBundle.getBundle("/Bundle").getString("ReservaCreated"));
         if (!JsfUtil.isValidationFailed()) {
             items = null;    // Invalidate list of items to trigger re-query.
         }
     }
 
     public void update() {
-        persist(PersistAction.UPDATE, ResourceBundle.getBundle("/Bundle").getString("SocioUpdated"));
+        persist(PersistAction.UPDATE, ResourceBundle.getBundle("/Bundle").getString("ReservaUpdated"));
     }
 
     public void destroy() {
-        persist(PersistAction.DELETE, ResourceBundle.getBundle("/Bundle").getString("SocioDeleted"));
+        persist(PersistAction.DELETE, ResourceBundle.getBundle("/Bundle").getString("ReservaDeleted"));
         if (!JsfUtil.isValidationFailed()) {
             selected = null; // Remove selection
             items = null;    // Invalidate list of items to trigger re-query.
         }
     }
 
-    public List<Socio> getItems() {
+    public List<Reserva> getItems() {
         if (items == null) {
             items = getFacade().findAll();
         }
@@ -109,24 +109,24 @@ public class SocioController implements Serializable {
         }
     }
 
-    public List<Socio> getItemsAvailableSelectMany() {
+    public List<Reserva> getItemsAvailableSelectMany() {
         return getFacade().findAll();
     }
 
-    public List<Socio> getItemsAvailableSelectOne() {
+    public List<Reserva> getItemsAvailableSelectOne() {
         return getFacade().findAll();
     }
 
-    @FacesConverter(forClass = Socio.class)
-    public static class SocioControllerConverter implements Converter {
+    @FacesConverter(forClass = Reserva.class)
+    public static class ReservaControllerConverter implements Converter {
 
         @Override
         public Object getAsObject(FacesContext facesContext, UIComponent component, String value) {
             if (value == null || value.length() == 0) {
                 return null;
             }
-            SocioController controller = (SocioController) facesContext.getApplication().getELResolver().
-                    getValue(facesContext.getELContext(), null, "socioController");
+            ReservaController controller = (ReservaController) facesContext.getApplication().getELResolver().
+                    getValue(facesContext.getELContext(), null, "reservaController");
             return controller.getFacade().find(getKey(value));
         }
 
@@ -147,11 +147,11 @@ public class SocioController implements Serializable {
             if (object == null) {
                 return null;
             }
-            if (object instanceof Socio) {
-                Socio o = (Socio) object;
+            if (object instanceof Reserva) {
+                Reserva o = (Reserva) object;
                 return getStringKey(o.getId());
             } else {
-                Logger.getLogger(this.getClass().getName()).log(Level.SEVERE, "object {0} is of type {1}; expected type: {2}", new Object[]{object, object.getClass().getName(), Socio.class.getName()});
+                Logger.getLogger(this.getClass().getName()).log(Level.SEVERE, "object {0} is of type {1}; expected type: {2}", new Object[]{object, object.getClass().getName(), Reserva.class.getName()});
                 return null;
             }
         }

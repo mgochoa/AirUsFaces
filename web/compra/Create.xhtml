@@ -20,11 +20,11 @@
                                            var="clienteItem"
                                            itemValue="#{clienteItem}"/>
                         </p:selectOneMenu>
-                        <p:outputLabel value="#{bundle.CreateCompraLabel_vuelo}" for="vuelo" />
-                        <p:selectOneMenu id="vuelo" value="#{compraController.selected.vuelo}" >
-                            <f:selectItems value="#{vueloController.itemsAvailableSelectOne}"
-                                           var="vueloItem"
-                                           itemValue="#{vueloItem}"/>
+                        <p:outputLabel value="#{bundle.CreateCompraLabel_pasaje}" for="pasaje" />
+                        <p:selectOneMenu id="pasaje" value="#{compraController.selected.pasaje}" >
+                            <f:selectItems value="#{pasajeController.itemsAvailableSelectOne}"
+                                           var="pasajeItem"
+                                           itemValue="#{pasajeItem}"/>
                         </p:selectOneMenu>
                     </p:panelGrid>
                     <p:commandButton actionListener="#{compraController.create}" value="#{bundle.Save}" update="display,:CompraListForm:datalist,:growl" oncomplete="handleSubmit(args,'CompraCreateDialog');"/>

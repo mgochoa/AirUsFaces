@@ -1,9 +1,9 @@
-package co.edu.udea.arqsw.aerolinea.jsf;
+package co.edu.udea.arqsw.aerolinea.data.jsf;
 
-import co.edu.udea.arqsw.aerolinea.data.dto.Compra;
-import co.edu.udea.arqsw.aerolinea.jsf.util.JsfUtil;
-import co.edu.udea.arqsw.aerolinea.jsf.util.JsfUtil.PersistAction;
-import co.edu.udea.arqsw.aerolinea.sessionbeans.CompraFacade;
+import co.edu.udea.arqsw.aerolinea.data.dto.Clase;
+import co.edu.udea.arqsw.aerolinea.data.jsf.util.JsfUtil;
+import co.edu.udea.arqsw.aerolinea.data.jsf.util.JsfUtil.PersistAction;
+import co.edu.udea.arqsw.aerolinea.data.sessionbeans.ClaseFacade;
 
 import java.io.Serializable;
 import java.util.List;
@@ -19,23 +19,23 @@ import javax.faces.context.FacesContext;
 import javax.faces.convert.Converter;
 import javax.faces.convert.FacesConverter;
 
-@ManagedBean(name = "compraController")
+@ManagedBean(name = "claseController")
 @SessionScoped
-public class CompraController implements Serializable {
+public class ClaseController implements Serializable {
 
     @EJB
-    private co.edu.udea.arqsw.aerolinea.sessionbeans.CompraFacade ejbFacade;
-    private List<Compra> items = null;
-    private Compra selected;
+    private co.edu.udea.arqsw.aerolinea.data.sessionbeans.ClaseFacade ejbFacade;
+    private List<Clase> items = null;
+    private Clase selected;
 
-    public CompraController() {
+    public ClaseController() {
     }
 
-    public Compra getSelected() {
+    public Clase getSelected() {
         return selected;
     }
 
-    public void setSelected(Compra selected) {
+    public void setSelected(Clase selected) {
         this.selected = selected;
     }
 
@@ -45,36 +45,36 @@ public class CompraController implements Serializable {
     protected void initializeEmbeddableKey() {
     }
 
-    private CompraFacade getFacade() {
+    private ClaseFacade getFacade() {
         return ejbFacade;
     }
 
-    public Compra prepareCreate() {
-        selected = new Compra();
+    public Clase prepareCreate() {
+        selected = new Clase();
         initializeEmbeddableKey();
         return selected;
     }
 
     public void create() {
-        persist(PersistAction.CREATE, ResourceBundle.getBundle("/Bundle").getString("CompraCreated"));
+        persist(PersistAction.CREATE, ResourceBundle.getBundle("/Bundle").getString("ClaseCreated"));
         if (!JsfUtil.isValidationFailed()) {
             items = null;    // Invalidate list of items to trigger re-query.
         }
     }
 
     public void update() {
-        persist(PersistAction.UPDATE, ResourceBundle.getBundle("/Bundle").getString("CompraUpdated"));
+        persist(PersistAction.UPDATE, ResourceBundle.getBundle("/Bundle").getString("ClaseUpdated"));
     }
 
     public void destroy() {
-        persist(PersistAction.DELETE, ResourceBundle.getBundle("/Bundle").getString("CompraDeleted"));
+        persist(PersistAction.DELETE, ResourceBundle.getBundle("/Bundle").getString("ClaseDeleted"));
         if (!JsfUtil.isValidationFailed()) {
             selected = null; // Remove selection
             items = null;    // Invalidate list of items to trigger re-query.
         }
     }
 
-    public List<Compra> getItems() {
+    public List<Clase> getItems() {
         if (items == null) {
             items = getFacade().findAll();
         }
@@ -109,24 +109,24 @@ public class CompraController implements Serializable {
         }
     }
 
-    public List<Compra> getItemsAvailableSelectMany() {
+    public List<Clase> getItemsAvailableSelectMany() {
         return getFacade().findAll();
     }
 
-    public List<Compra> getItemsAvailableSelectOne() {
+    public List<Clase> getItemsAvailableSelectOne() {
         return getFacade().findAll();
     }
 
-    @FacesConverter(forClass = Compra.class)
-    public static class CompraControllerConverter implements Converter {
+    @FacesConverter(forClass = Clase.class)
+    public static class ClaseControllerConverter implements Converter {
 
         @Override
         public Object getAsObject(FacesContext facesContext, UIComponent component, String value) {
             if (value == null || value.length() == 0) {
                 return null;
             }
-            CompraController controller = (CompraController) facesContext.getApplication().getELResolver().
-                    getValue(facesContext.getELContext(), null, "compraController");
+            ClaseController controller = (ClaseController) facesContext.getApplication().getELResolver().
+                    getValue(facesContext.getELContext(), null, "claseController");
             return controller.getFacade().find(getKey(value));
         }
 
@@ -147,11 +147,11 @@ public class CompraController implements Serializable {
             if (object == null) {
                 return null;
             }
-            if (object instanceof Compra) {
-                Compra o = (Compra) object;
+            if (object instanceof Clase) {
+                Clase o = (Clase) object;
                 return getStringKey(o.getId());
             } else {
-                Logger.getLogger(this.getClass().getName()).log(Level.SEVERE, "object {0} is of type {1}; expected type: {2}", new Object[]{object, object.getClass().getName(), Compra.class.getName()});
+                Logger.getLogger(this.getClass().getName()).log(Level.SEVERE, "object {0} is of type {1}; expected type: {2}", new Object[]{object, object.getClass().getName(), Clase.class.getName()});
                 return null;
             }
         }

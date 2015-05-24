@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package co.edu.udea.arqsw.aerolinea.sessionbeans;
+package co.edu.udea.arqsw.aerolinea.data.sessionbeans;
 
 import java.util.List;
 import javax.persistence.EntityManager;

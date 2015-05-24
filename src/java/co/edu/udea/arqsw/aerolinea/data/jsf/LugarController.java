@@ -1,9 +1,9 @@
-package co.edu.udea.arqsw.aerolinea.jsf;
+package co.edu.udea.arqsw.aerolinea.data.jsf;
 
-import co.edu.udea.arqsw.aerolinea.data.dto.Reserva;
-import co.edu.udea.arqsw.aerolinea.jsf.util.JsfUtil;
-import co.edu.udea.arqsw.aerolinea.jsf.util.JsfUtil.PersistAction;
-import co.edu.udea.arqsw.aerolinea.sessionbeans.ReservaFacade;
+import co.edu.udea.arqsw.aerolinea.data.dto.Lugar;
+import co.edu.udea.arqsw.aerolinea.data.jsf.util.JsfUtil;
+import co.edu.udea.arqsw.aerolinea.data.jsf.util.JsfUtil.PersistAction;
+import co.edu.udea.arqsw.aerolinea.data.sessionbeans.LugarFacade;
 
 import java.io.Serializable;
 import java.util.List;
@@ -19,23 +19,23 @@ import javax.faces.context.FacesContext;
 import javax.faces.convert.Converter;
 import javax.faces.convert.FacesConverter;
 
-@ManagedBean(name = "reservaController")
+@ManagedBean(name = "lugarController")
 @SessionScoped
-public class ReservaController implements Serializable {
+public class LugarController implements Serializable {
 
     @EJB
-    private co.edu.udea.arqsw.aerolinea.sessionbeans.ReservaFacade ejbFacade;
-    private List<Reserva> items = null;
-    private Reserva selected;
+    private co.edu.udea.arqsw.aerolinea.data.sessionbeans.LugarFacade ejbFacade;
+    private List<Lugar> items = null;
+    private Lugar selected;
 
-    public ReservaController() {
+    public LugarController() {
     }
 
-    public Reserva getSelected() {
+    public Lugar getSelected() {
         return selected;
     }
 
-    public void setSelected(Reserva selected) {
+    public void setSelected(Lugar selected) {
         this.selected = selected;
     }
 
@@ -45,36 +45,36 @@ public class ReservaController implements Serializable {
     protected void initializeEmbeddableKey() {
     }
 
-    private ReservaFacade getFacade() {
+    private LugarFacade getFacade() {
         return ejbFacade;
     }
 
-    public Reserva prepareCreate() {
-        selected = new Reserva();
+    public Lugar prepareCreate() {
+        selected = new Lugar();
         initializeEmbeddableKey();
         return selected;
     }
 
     public void create() {
-        persist(PersistAction.CREATE, ResourceBundle.getBundle("/Bundle").getString("ReservaCreated"));
+        persist(PersistAction.CREATE, ResourceBundle.getBundle("/Bundle").getString("LugarCreated"));
         if (!JsfUtil.isValidationFailed()) {
             items = null;    // Invalidate list of items to trigger re-query.
         }
     }
 
     public void update() {
-        persist(PersistAction.UPDATE, ResourceBundle.getBundle("/Bundle").getString("ReservaUpdated"));
+        persist(PersistAction.UPDATE, ResourceBundle.getBundle("/Bundle").getString("LugarUpdated"));
     }
 
     public void destroy() {
-        persist(PersistAction.DELETE, ResourceBundle.getBundle("/Bundle").getString("ReservaDeleted"));
+        persist(PersistAction.DELETE, ResourceBundle.getBundle("/Bundle").getString("LugarDeleted"));
         if (!JsfUtil.isValidationFailed()) {
             selected = null; // Remove selection
             items = null;    // Invalidate list of items to trigger re-query.
         }
     }
 
-    public List<Reserva> getItems() {
+    public List<Lugar> getItems() {
         if (items == null) {
             items = getFacade().findAll();
         }
@@ -109,24 +109,24 @@ public class ReservaController implements Serializable {
         }
     }
 
-    public List<Reserva> getItemsAvailableSelectMany() {
+    public List<Lugar> getItemsAvailableSelectMany() {
         return getFacade().findAll();
     }
 
-    public List<Reserva> getItemsAvailableSelectOne() {
+    public List<Lugar> getItemsAvailableSelectOne() {
         return getFacade().findAll();
     }
 
-    @FacesConverter(forClass = Reserva.class)
-    public static class ReservaControllerConverter implements Converter {
+    @FacesConverter(forClass = Lugar.class)
+    public static class LugarControllerConverter implements Converter {
 
         @Override
         public Object getAsObject(FacesContext facesContext, UIComponent component, String value) {
             if (value == null || value.length() == 0) {
                 return null;
             }
-            ReservaController controller = (ReservaController) facesContext.getApplication().getELResolver().
-                    getValue(facesContext.getELContext(), null, "reservaController");
+            LugarController controller = (LugarController) facesContext.getApplication().getELResolver().
+                    getValue(facesContext.getELContext(), null, "lugarController");
             return controller.getFacade().find(getKey(value));
         }
 
@@ -147,11 +147,11 @@ public class ReservaController implements Serializable {
             if (object == null) {
                 return null;
             }
-            if (object instanceof Reserva) {
-                Reserva o = (Reserva) object;
+            if (object instanceof Lugar) {
+                Lugar o = (Lugar) object;
                 return getStringKey(o.getId());
             } else {
-                Logger.getLogger(this.getClass().getName()).log(Level.SEVERE, "object {0} is of type {1}; expected type: {2}", new Object[]{object, object.getClass().getName(), Reserva.class.getName()});
+                Logger.getLogger(this.getClass().getName()).log(Level.SEVERE, "object {0} is of type {1}; expected type: {2}", new Object[]{object, object.getClass().getName(), Lugar.class.getName()});
                 return null;
             }
         }

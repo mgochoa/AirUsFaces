@@ -35,6 +35,12 @@
                         </p:column>
                         <p:column>
                             <f:facet name="header">
+                                <h:outputText value="#{bundle.ListPasajeTitle_precio}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.precio}"/>
+                        </p:column>
+                        <p:column>
+                            <f:facet name="header">
                                 <h:outputText value="#{bundle.ListPasajeTitle_clase}"/>
                             </f:facet>
                             <h:outputText value="#{item.clase}"/>
