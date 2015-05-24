@@ -5,7 +5,7 @@
  */
 package co.edu.udea.arqsw.aerolinea.sessionbeans;
 
-import co.edu.udea.arqsw.aerolinea.dto.Socio;
+import co.edu.udea.arqsw.aerolinea.data.dto.Socio;
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;

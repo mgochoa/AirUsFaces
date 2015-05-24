@@ -3,29 +3,25 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package co.edu.udea.arqsw.aerolinea.sessionbeans;
+package co.edu.udea.arqsw.aerolinea.data.dao;
 
-import co.edu.udea.arqsw.aerolinea.data.dto.Reserva;
+import co.edu.udea.arqsw.aerolinea.data.dto.Clase;
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 
 /**
  *
- * @author felipe
+ * @author dx
  */
 @Stateless
-public class ReservaFacade extends AbstractFacade<Reserva> {
+public class ClaseDao implements ClaseDaoLocal {
+
     @PersistenceContext(unitName = "AerolineaPU")
     private EntityManager em;
 
     @Override
-    protected EntityManager getEntityManager() {
-        return em;
+    public Clase obtener(Integer id) {
+        return null;
     }
-
-    public ReservaFacade() {
-        super(Reserva.class);
-    }
-    
 }

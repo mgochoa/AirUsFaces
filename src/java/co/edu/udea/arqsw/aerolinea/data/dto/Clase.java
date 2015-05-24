@@ -3,35 +3,37 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package co.edu.udea.arqsw.aerolinea.dto;
+package co.edu.udea.arqsw.aerolinea.data.dto;
 
 import java.io.Serializable;
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
 
 /**
  *
  * @author dx
  */
 @Entity
-public class Compra implements Serializable {
+public class Clase implements Serializable {
 
     private static final long serialVersionUID = 1L;
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
 
-    @JoinColumn(name = "cliente")
-    @ManyToOne
-    private Cliente cliente;
+    @Column(name = "nombre")
+    private String nombre;
 
-    @JoinColumn(name = "vuelo")
-    @ManyToOne
-    private Vuelo vuelo;
+    public String getNombre() {
+        return nombre;
+    }
+
+    public void setNombre(String nombre) {
+        this.nombre = nombre;
+    }
 
     public Long getId() {
         return id;
@@ -51,10 +53,10 @@ public class Compra implements Serializable {
     @Override
     public boolean equals(Object object) {
         // TODO: Warning - this method won't work in the case the id fields are not set
-        if (!(object instanceof Compra)) {
+        if (!(object instanceof Clase)) {
             return false;
         }
-        Compra other = (Compra) object;
+        Clase other = (Clase) object;
         if ((this.id == null && other.id != null) || (this.id != null && !this.id.equals(other.id))) {
             return false;
         }
@@ -63,35 +65,7 @@ public class Compra implements Serializable {
 
     @Override
     public String toString() {
-        return "co.edu.udea.arqsw.aerolinea.dto.Compra[ id=" + id + " ]";
-    }
-
-    /**
-     * @return the cliente
-     */
-    public Cliente getCliente() {
-        return cliente;
-    }
-
-    /**
-     * @param cliente the cliente to set
-     */
-    public void setCliente(Cliente cliente) {
-        this.cliente = cliente;
-    }
-
-    /**
-     * @return the vuelo
-     */
-    public Vuelo getVuelo() {
-        return vuelo;
-    }
-
-    /**
-     * @param vuelo the vuelo to set
-     */
-    public void setVuelo(Vuelo vuelo) {
-        this.vuelo = vuelo;
+        return "co.edu.udea.arqsw.aerolinea.data.dto.Clase[ id=" + id + " ]";
     }
 
 }

@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package co.edu.udea.arqsw.aerolinea.dto;
+package co.edu.udea.arqsw.aerolinea.data.dto;
 
 import java.io.Serializable;
 import javax.persistence.Entity;
@@ -29,9 +29,9 @@ public class Reserva implements Serializable {
     @ManyToOne
     private Cliente cliente;
 
-    @JoinColumn(name = "vuelo")
+    @JoinColumn(name = "pasaje")
     @ManyToOne
-    private Vuelo vuelo;
+    private Pasaje pasaje;
 
     public Long getId() {
         return id;
@@ -81,17 +81,17 @@ public class Reserva implements Serializable {
     }
 
     /**
-     * @return the vuelo
+     * @return the pasaje
      */
-    public Vuelo getVuelo() {
-        return vuelo;
+    public Pasaje getPasaje() {
+        return pasaje;
     }
 
     /**
-     * @param vuelo the vuelo to set
+     * @param pasaje the pasaje to set
      */
-    public void setVuelo(Vuelo vuelo) {
-        this.vuelo = vuelo;
+    public void setPasaje(Pasaje pasaje) {
+        this.pasaje = pasaje;
     }
 
 }

@@ -3,9 +3,9 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package co.edu.udea.arqsw.aerolinea.dao;
+package co.edu.udea.arqsw.aerolinea.data.dao;
 
-import co.edu.udea.arqsw.aerolinea.dto.Lugar;
+import co.edu.udea.arqsw.aerolinea.data.dto.Reserva;
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
@@ -15,14 +15,23 @@ import javax.persistence.PersistenceContext;
  * @author dx
  */
 @Stateless
-public class LugarDao implements LugarDaoLocal {
+public class ReservaDao implements ReservaDaoLocal {
 
     @PersistenceContext(unitName = "AerolineaPU")
     private EntityManager em;
 
     @Override
-    public Lugar obtener(Integer id) {
-        return em.find(Lugar.class, id);
+    public Reserva obtener(Integer id) {
+        return em.find(Reserva.class, id);
     }
 
+    @Override
+    public void registrar(Reserva reserva) {
+        em.persist(reserva);
+    }
+
+    @Override
+    public void modificar(Reserva reserva) {
+        em.merge(reserva);
+    }
 }

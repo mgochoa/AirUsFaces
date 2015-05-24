@@ -3,11 +3,13 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package co.edu.udea.arqsw.aerolinea.dto;
+package co.edu.udea.arqsw.aerolinea.data.dto;
 
 import java.io.Serializable;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 
 /**
@@ -15,20 +17,14 @@ import javax.persistence.Id;
  * @author dx
  */
 @Entity
-public class Cliente implements Serializable {
-
+public class Lugar implements Serializable {
     private static final long serialVersionUID = 1L;
     @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
-
-    @Column(name = "nombre")
+    
+    @Column(name="nombre")
     private String nombre;
-
-    @Column(name = "apellido")
-    private String apellido;
-
-    @Column(name = "tarjeta")
-    private String numeroTarjeta;
 
     public Long getId() {
         return id;
@@ -48,10 +44,10 @@ public class Cliente implements Serializable {
     @Override
     public boolean equals(Object object) {
         // TODO: Warning - this method won't work in the case the id fields are not set
-        if (!(object instanceof Cliente)) {
+        if (!(object instanceof Lugar)) {
             return false;
         }
-        Cliente other = (Cliente) object;
+        Lugar other = (Lugar) object;
         if ((this.id == null && other.id != null) || (this.id != null && !this.id.equals(other.id))) {
             return false;
         }
@@ -60,7 +56,7 @@ public class Cliente implements Serializable {
 
     @Override
     public String toString() {
-        return "co.edu.udea.arqsw.aerolinea.dto.Cliente[ id=" + id + " ]";
+        return "co.edu.udea.arqsw.aerolinea.dto.Lugar[ id=" + id + " ]";
     }
 
     /**
@@ -76,33 +72,5 @@ public class Cliente implements Serializable {
     public void setNombre(String nombre) {
         this.nombre = nombre;
     }
-
-    /**
-     * @return the apellido
-     */
-    public String getApellido() {
-        return apellido;
-    }
-
-    /**
-     * @param apellido the apellido to set
-     */
-    public void setApellido(String apellido) {
-        this.apellido = apellido;
-    }
-
-    /**
-     * @return the numeroTarjeta
-     */
-    public String getNumeroTarjeta() {
-        return numeroTarjeta;
-    }
-
-    /**
-     * @param numeroTarjeta the numeroTarjeta to set
-     */
-    public void setNumeroTarjeta(String numeroTarjeta) {
-        this.numeroTarjeta = numeroTarjeta;
-    }
-
+    
 }

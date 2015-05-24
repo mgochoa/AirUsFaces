@@ -3,9 +3,9 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package co.edu.udea.arqsw.aerolinea.dao;
+package co.edu.udea.arqsw.aerolinea.data.dao;
 
-import co.edu.udea.arqsw.aerolinea.dto.Cliente;
+import co.edu.udea.arqsw.aerolinea.data.dto.Clase;
 import javax.ejb.Local;
 
 /**
@@ -13,12 +13,8 @@ import javax.ejb.Local;
  * @author dx
  */
 @Local
-public interface ClienteDaoLocal {
+public interface ClaseDaoLocal {
 
-    Cliente obtener(Integer cedula);
-
-    void registrar(Cliente cliente);
-
-    void modificar(Cliente cliente);
+    Clase obtener(Integer id);
 
 }

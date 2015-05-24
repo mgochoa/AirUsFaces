@@ -3,11 +3,13 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package co.edu.udea.arqsw.aerolinea.dao;
+package co.edu.udea.arqsw.aerolinea.data.dao;
 
-import co.edu.udea.arqsw.aerolinea.dto.Vuelo;
-import javax.ejb.Local;
+import co.edu.udea.arqsw.aerolinea.data.dto.Lugar;
+import co.edu.udea.arqsw.aerolinea.data.dto.Vuelo;
+import java.util.Date;
 import java.util.List;
+import javax.ejb.Local;
 
 /**
  *
@@ -22,6 +24,6 @@ public interface VueloDaoLocal {
 
     void modificar(Vuelo vuelo);
 
-    List<Vuelo> obtenerTodos();
+    List<Vuelo> obtener(Date fechai, Date fechaf, Lugar origen, Lugar destino);
 
 }

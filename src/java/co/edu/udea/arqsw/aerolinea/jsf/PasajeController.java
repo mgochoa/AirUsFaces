@@ -1,6 +1,6 @@
 package co.edu.udea.arqsw.aerolinea.jsf;
 
-import co.edu.udea.arqsw.aerolinea.dto.Pasaje;
+import co.edu.udea.arqsw.aerolinea.data.dto.Pasaje;
 import co.edu.udea.arqsw.aerolinea.jsf.util.JsfUtil;
 import co.edu.udea.arqsw.aerolinea.jsf.util.JsfUtil.PersistAction;
 import co.edu.udea.arqsw.aerolinea.sessionbeans.PasajeFacade;

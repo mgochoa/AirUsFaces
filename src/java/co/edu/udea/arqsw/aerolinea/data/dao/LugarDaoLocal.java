@@ -3,9 +3,9 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package co.edu.udea.arqsw.aerolinea.dao;
+package co.edu.udea.arqsw.aerolinea.data.dao;
 
-import co.edu.udea.arqsw.aerolinea.dto.Lugar;
+import co.edu.udea.arqsw.aerolinea.data.dto.Lugar;
 import javax.ejb.Local;
 
 /**

@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package co.edu.udea.arqsw.aerolinea.dto;
+package co.edu.udea.arqsw.aerolinea.data.dto;
 
 import java.io.Serializable;
 import javax.persistence.Column;
@@ -11,20 +11,31 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 
 /**
  *
  * @author dx
  */
 @Entity
-public class Lugar implements Serializable {
+public class Pasaje implements Serializable {
+
     private static final long serialVersionUID = 1L;
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
-    
-    @Column(name="nombre")
-    private String nombre;
+
+    @JoinColumn(name = "clase")
+    @ManyToOne
+    private Clase clase;
+
+    @JoinColumn(name = "vuelo")
+    @ManyToOne
+    private Vuelo vuelo;
+
+    @Column(name="precio")
+    private Long precio;
 
     public Long getId() {
         return id;
@@ -32,6 +43,14 @@ public class Lugar implements Serializable {
 
     public void setId(Long id) {
         this.id = id;
+    }
+
+    public Long getPrecio() {
+        return precio;
+    }
+
+    public void setPrecio(Long precio) {
+        this.precio = precio;
     }
 
     @Override
@@ -44,10 +63,10 @@ public class Lugar implements Serializable {
     @Override
     public boolean equals(Object object) {
         // TODO: Warning - this method won't work in the case the id fields are not set
-        if (!(object instanceof Lugar)) {
+        if (!(object instanceof Pasaje)) {
             return false;
         }
-        Lugar other = (Lugar) object;
+        Pasaje other = (Pasaje) object;
         if ((this.id == null && other.id != null) || (this.id != null && !this.id.equals(other.id))) {
             return false;
         }
@@ -56,21 +75,29 @@ public class Lugar implements Serializable {
 
     @Override
     public String toString() {
-        return "co.edu.udea.arqsw.aerolinea.dto.Lugar[ id=" + id + " ]";
+        return "co.edu.udea.arqsw.aerolinea.dto.Pasaje[ id=" + id + " ]";
+    }
+
+    public Clase getClase() {
+        return clase;
+    }
+
+    public void setClase(Clase clase) {
+        this.clase = clase;
     }
 
     /**
-     * @return the nombre
+     * @return the vuelo
      */
-    public String getNombre() {
-        return nombre;
+    public Vuelo getVuelo() {
+        return vuelo;
     }
 
     /**
-     * @param nombre the nombre to set
+     * @param vuelo the vuelo to set
      */
-    public void setNombre(String nombre) {
-        this.nombre = nombre;
+    public void setVuelo(Vuelo vuelo) {
+        this.vuelo = vuelo;
     }
-    
+
 }

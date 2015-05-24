@@ -5,7 +5,7 @@
  */
 package co.edu.udea.arqsw.aerolinea.sessionbeans;
 
-import co.edu.udea.arqsw.aerolinea.dto.Cliente;
+import co.edu.udea.arqsw.aerolinea.data.dto.Cliente;
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;

@@ -3,9 +3,9 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package co.edu.udea.arqsw.aerolinea.dao;
+package co.edu.udea.arqsw.aerolinea.data.dao;
 
-import co.edu.udea.arqsw.aerolinea.dto.Reserva;
+import co.edu.udea.arqsw.aerolinea.data.dto.Pasaje;
 import javax.ejb.Local;
 
 /**
@@ -13,12 +13,12 @@ import javax.ejb.Local;
  * @author dx
  */
 @Local
-public interface ReservaDaoLocal {
+public interface PasajeDaoLocal {
 
-    Reserva obtener(Integer id);
+    Pasaje obtener(Integer id);
 
-    void registrar(Reserva reserva);
+    void modificar(Pasaje pasaje);
 
-    void modificar(Reserva reserva);
+    void registrar(Pasaje pasaje);
 
 }

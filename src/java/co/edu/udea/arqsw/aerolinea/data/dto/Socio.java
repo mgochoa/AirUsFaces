@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package co.edu.udea.arqsw.aerolinea.dto;
+package co.edu.udea.arqsw.aerolinea.data.dto;
 
 import java.io.Serializable;
 import javax.persistence.Column;

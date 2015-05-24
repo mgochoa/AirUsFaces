@@ -3,15 +3,14 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package co.edu.udea.arqsw.aerolinea.dto;
+package co.edu.udea.arqsw.aerolinea.data.dto;
 
 import java.io.Serializable;
-import javax.persistence.Column;
-import javax.persistence.JoinColumn;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 
 /**
@@ -19,19 +18,20 @@ import javax.persistence.ManyToOne;
  * @author dx
  */
 @Entity
-public class Pasaje implements Serializable {
+public class Compra implements Serializable {
 
     private static final long serialVersionUID = 1L;
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
 
-    @Column(name = "clase")
-    private String clase;
-
-    @JoinColumn(name = "vuelo")
+    @JoinColumn(name = "cliente")
     @ManyToOne
-    private Vuelo vuelo;
+    private Cliente cliente;
+
+    @JoinColumn(name = "pasaje")
+    @ManyToOne
+    private Pasaje pasaje;
 
     public Long getId() {
         return id;
@@ -51,10 +51,10 @@ public class Pasaje implements Serializable {
     @Override
     public boolean equals(Object object) {
         // TODO: Warning - this method won't work in the case the id fields are not set
-        if (!(object instanceof Pasaje)) {
+        if (!(object instanceof Compra)) {
             return false;
         }
-        Pasaje other = (Pasaje) object;
+        Compra other = (Compra) object;
         if ((this.id == null && other.id != null) || (this.id != null && !this.id.equals(other.id))) {
             return false;
         }
@@ -63,35 +63,35 @@ public class Pasaje implements Serializable {
 
     @Override
     public String toString() {
-        return "co.edu.udea.arqsw.aerolinea.dto.Pasaje[ id=" + id + " ]";
+        return "co.edu.udea.arqsw.aerolinea.dto.Compra[ id=" + id + " ]";
     }
 
     /**
-     * @return the clase
+     * @return the cliente
      */
-    public String getClase() {
-        return clase;
+    public Cliente getCliente() {
+        return cliente;
     }
 
     /**
-     * @param clase the clase to set
+     * @param cliente the cliente to set
      */
-    public void setClase(String clase) {
-        this.clase = clase;
+    public void setCliente(Cliente cliente) {
+        this.cliente = cliente;
     }
 
     /**
-     * @return the vuelo
+     * @return the pasaje
      */
-    public Vuelo getVuelo() {
-        return vuelo;
+    public Pasaje getPasaje() {
+        return pasaje;
     }
 
     /**
-     * @param vuelo the vuelo to set
+     * @param pasaje the compra to set
      */
-    public void setVuelo(Vuelo vuelo) {
-        this.vuelo = vuelo;
+    public void setVuelo(Pasaje pasaje) {
+        this.pasaje = pasaje;
     }
 
 }

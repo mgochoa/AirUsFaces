@@ -1,6 +1,6 @@
 package co.edu.udea.arqsw.aerolinea.jsf;
 
-import co.edu.udea.arqsw.aerolinea.dto.Socio;
+import co.edu.udea.arqsw.aerolinea.data.dto.Socio;
 import co.edu.udea.arqsw.aerolinea.jsf.util.JsfUtil;
 import co.edu.udea.arqsw.aerolinea.jsf.util.JsfUtil.PersistAction;
 import co.edu.udea.arqsw.aerolinea.sessionbeans.SocioFacade;
