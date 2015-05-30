@@ -1,9 +1,8 @@
-package co.edu.udea.arqsw.aerolinea.data.jsf;
+package co.edu.udea.arqsw.aerolinea.data.dao;
 
-import co.edu.udea.arqsw.aerolinea.data.dto.Socio;
-import co.edu.udea.arqsw.aerolinea.data.jsf.util.JsfUtil;
-import co.edu.udea.arqsw.aerolinea.data.jsf.util.JsfUtil.PersistAction;
-import co.edu.udea.arqsw.aerolinea.data.sessionbeans.SocioFacade;
+import co.edu.udea.arqsw.aerolinea.data.dto.Cliente;
+import co.edu.udea.arqsw.aerolinea.data.dao.util.JsfUtil;
+import co.edu.udea.arqsw.aerolinea.data.dao.util.JsfUtil.PersistAction;
 
 import java.io.Serializable;
 import java.util.List;
@@ -12,30 +11,30 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.ejb.EJB;
 import javax.ejb.EJBException;
-import javax.faces.bean.ManagedBean;
-import javax.faces.bean.SessionScoped;
+import javax.inject.Named;
+import javax.enterprise.context.SessionScoped;
 import javax.faces.component.UIComponent;
 import javax.faces.context.FacesContext;
 import javax.faces.convert.Converter;
 import javax.faces.convert.FacesConverter;
 
-@ManagedBean(name = "socioController")
+@Named("clienteController")
 @SessionScoped
-public class SocioController implements Serializable {
+public class ClienteController implements Serializable {
 
     @EJB
-    private co.edu.udea.arqsw.aerolinea.data.sessionbeans.SocioFacade ejbFacade;
-    private List<Socio> items = null;
-    private Socio selected;
+    private co.edu.udea.arqsw.aerolinea.data.dao.ClienteFacade ejbFacade;
+    private List<Cliente> items = null;
+    private Cliente selected;
 
-    public SocioController() {
+    public ClienteController() {
     }
 
-    public Socio getSelected() {
+    public Cliente getSelected() {
         return selected;
     }
 
-    public void setSelected(Socio selected) {
+    public void setSelected(Cliente selected) {
         this.selected = selected;
     }
 
@@ -45,36 +44,36 @@ public class SocioController implements Serializable {
     protected void initializeEmbeddableKey() {
     }
 
-    private SocioFacade getFacade() {
+    private ClienteFacade getFacade() {
         return ejbFacade;
     }
 
-    public Socio prepareCreate() {
-        selected = new Socio();
+    public Cliente prepareCreate() {
+        selected = new Cliente();
         initializeEmbeddableKey();
         return selected;
     }
 
     public void create() {
-        persist(PersistAction.CREATE, ResourceBundle.getBundle("/Bundle").getString("SocioCreated"));
+        persist(PersistAction.CREATE, ResourceBundle.getBundle("/Bundle").getString("ClienteCreated"));
         if (!JsfUtil.isValidationFailed()) {
             items = null;    // Invalidate list of items to trigger re-query.
         }
     }
 
     public void update() {
-        persist(PersistAction.UPDATE, ResourceBundle.getBundle("/Bundle").getString("SocioUpdated"));
+        persist(PersistAction.UPDATE, ResourceBundle.getBundle("/Bundle").getString("ClienteUpdated"));
     }
 
     public void destroy() {
-        persist(PersistAction.DELETE, ResourceBundle.getBundle("/Bundle").getString("SocioDeleted"));
+        persist(PersistAction.DELETE, ResourceBundle.getBundle("/Bundle").getString("ClienteDeleted"));
         if (!JsfUtil.isValidationFailed()) {
             selected = null; // Remove selection
             items = null;    // Invalidate list of items to trigger re-query.
         }
     }
 
-    public List<Socio> getItems() {
+    public List<Cliente> getItems() {
         if (items == null) {
             items = getFacade().findAll();
         }
@@ -109,25 +108,29 @@ public class SocioController implements Serializable {
         }
     }
 
-    public List<Socio> getItemsAvailableSelectMany() {
+    public Cliente getCliente(java.lang.Long id) {
+        return getFacade().find(id);
+    }
+
+    public List<Cliente> getItemsAvailableSelectMany() {
         return getFacade().findAll();
     }
 
-    public List<Socio> getItemsAvailableSelectOne() {
+    public List<Cliente> getItemsAvailableSelectOne() {
         return getFacade().findAll();
     }
 
-    @FacesConverter(forClass = Socio.class)
-    public static class SocioControllerConverter implements Converter {
+    @FacesConverter(forClass = Cliente.class)
+    public static class ClienteControllerConverter implements Converter {
 
         @Override
         public Object getAsObject(FacesContext facesContext, UIComponent component, String value) {
             if (value == null || value.length() == 0) {
                 return null;
             }
-            SocioController controller = (SocioController) facesContext.getApplication().getELResolver().
-                    getValue(facesContext.getELContext(), null, "socioController");
-            return controller.getFacade().find(getKey(value));
+            ClienteController controller = (ClienteController) facesContext.getApplication().getELResolver().
+                    getValue(facesContext.getELContext(), null, "clienteController");
+            return controller.getCliente(getKey(value));
         }
 
         java.lang.Long getKey(String value) {
@@ -147,11 +150,11 @@ public class SocioController implements Serializable {
             if (object == null) {
                 return null;
             }
-            if (object instanceof Socio) {
-                Socio o = (Socio) object;
+            if (object instanceof Cliente) {
+                Cliente o = (Cliente) object;
                 return getStringKey(o.getId());
             } else {
-                Logger.getLogger(this.getClass().getName()).log(Level.SEVERE, "object {0} is of type {1}; expected type: {2}", new Object[]{object, object.getClass().getName(), Socio.class.getName()});
+                Logger.getLogger(this.getClass().getName()).log(Level.SEVERE, "object {0} is of type {1}; expected type: {2}", new Object[]{object, object.getClass().getName(), Cliente.class.getName()});
                 return null;
             }
         }

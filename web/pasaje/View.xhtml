@@ -14,12 +14,12 @@
                     <p:panelGrid columns="2" rendered="#{pasajeController.selected != null}">
                         <h:outputText value="#{bundle.ViewPasajeLabel_id}"/>
                         <h:outputText value="#{pasajeController.selected.id}" title="#{bundle.ViewPasajeTitle_id}"/>
-                        <h:outputText value="#{bundle.ViewPasajeLabel_precio}"/>
-                        <h:outputText value="#{pasajeController.selected.precio}" title="#{bundle.ViewPasajeTitle_precio}"/>
                         <h:outputText value="#{bundle.ViewPasajeLabel_clase}"/>
                         <h:outputText value="#{pasajeController.selected.clase}" title="#{bundle.ViewPasajeTitle_clase}"/>
                         <h:outputText value="#{bundle.ViewPasajeLabel_vuelo}"/>
                         <h:outputText value="#{pasajeController.selected.vuelo}" title="#{bundle.ViewPasajeTitle_vuelo}"/>
+                        <h:outputText value="#{bundle.ViewPasajeLabel_valor}"/>
+                        <h:outputText value="#{pasajeController.selected.valor}" title="#{bundle.ViewPasajeTitle_valor}"/>
                     </p:panelGrid>
                     <p:commandButton value="#{bundle.Close}" onclick="PasajeViewDialog.hide()"/>
                 </h:panelGroup>

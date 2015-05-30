@@ -1,9 +1,8 @@
-package co.edu.udea.arqsw.aerolinea.data.jsf;
+package co.edu.udea.arqsw.aerolinea.data.dao;
 
 import co.edu.udea.arqsw.aerolinea.data.dto.Clase;
-import co.edu.udea.arqsw.aerolinea.data.jsf.util.JsfUtil;
-import co.edu.udea.arqsw.aerolinea.data.jsf.util.JsfUtil.PersistAction;
-import co.edu.udea.arqsw.aerolinea.data.sessionbeans.ClaseFacade;
+import co.edu.udea.arqsw.aerolinea.data.dao.util.JsfUtil;
+import co.edu.udea.arqsw.aerolinea.data.dao.util.JsfUtil.PersistAction;
 
 import java.io.Serializable;
 import java.util.List;
@@ -12,19 +11,19 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.ejb.EJB;
 import javax.ejb.EJBException;
-import javax.faces.bean.ManagedBean;
-import javax.faces.bean.SessionScoped;
+import javax.inject.Named;
+import javax.enterprise.context.SessionScoped;
 import javax.faces.component.UIComponent;
 import javax.faces.context.FacesContext;
 import javax.faces.convert.Converter;
 import javax.faces.convert.FacesConverter;
 
-@ManagedBean(name = "claseController")
+@Named("claseController")
 @SessionScoped
 public class ClaseController implements Serializable {
 
     @EJB
-    private co.edu.udea.arqsw.aerolinea.data.sessionbeans.ClaseFacade ejbFacade;
+    private co.edu.udea.arqsw.aerolinea.data.dao.ClaseFacade ejbFacade;
     private List<Clase> items = null;
     private Clase selected;
 
@@ -109,6 +108,10 @@ public class ClaseController implements Serializable {
         }
     }
 
+    public Clase getClase(java.lang.Long id) {
+        return getFacade().find(id);
+    }
+
     public List<Clase> getItemsAvailableSelectMany() {
         return getFacade().findAll();
     }
@@ -127,7 +130,7 @@ public class ClaseController implements Serializable {
             }
             ClaseController controller = (ClaseController) facesContext.getApplication().getELResolver().
                     getValue(facesContext.getELContext(), null, "claseController");
-            return controller.getFacade().find(getKey(value));
+            return controller.getClase(getKey(value));
         }
 
         java.lang.Long getKey(String value) {

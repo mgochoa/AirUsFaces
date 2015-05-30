@@ -3,14 +3,14 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package co.edu.udea.arqsw.aerolinea.data.sessionbeans;
+package co.edu.udea.arqsw.aerolinea.data.dao;
 
 import java.util.List;
 import javax.persistence.EntityManager;
 
 /**
  *
- * @author felipe
+ * @author dx
  */
 public abstract class AbstractFacade<T> {
     private Class<T> entityClass;

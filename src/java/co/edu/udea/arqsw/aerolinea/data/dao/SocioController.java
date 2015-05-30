@@ -1,9 +1,8 @@
-package co.edu.udea.arqsw.aerolinea.data.jsf;
+package co.edu.udea.arqsw.aerolinea.data.dao;
 
-import co.edu.udea.arqsw.aerolinea.data.dto.Reserva;
-import co.edu.udea.arqsw.aerolinea.data.jsf.util.JsfUtil;
-import co.edu.udea.arqsw.aerolinea.data.jsf.util.JsfUtil.PersistAction;
-import co.edu.udea.arqsw.aerolinea.data.sessionbeans.ReservaFacade;
+import co.edu.udea.arqsw.aerolinea.data.dto.Socio;
+import co.edu.udea.arqsw.aerolinea.data.dao.util.JsfUtil;
+import co.edu.udea.arqsw.aerolinea.data.dao.util.JsfUtil.PersistAction;
 
 import java.io.Serializable;
 import java.util.List;
@@ -12,30 +11,30 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.ejb.EJB;
 import javax.ejb.EJBException;
-import javax.faces.bean.ManagedBean;
-import javax.faces.bean.SessionScoped;
+import javax.inject.Named;
+import javax.enterprise.context.SessionScoped;
 import javax.faces.component.UIComponent;
 import javax.faces.context.FacesContext;
 import javax.faces.convert.Converter;
 import javax.faces.convert.FacesConverter;
 
-@ManagedBean(name = "reservaController")
+@Named("socioController")
 @SessionScoped
-public class ReservaController implements Serializable {
+public class SocioController implements Serializable {
 
     @EJB
-    private co.edu.udea.arqsw.aerolinea.data.sessionbeans.ReservaFacade ejbFacade;
-    private List<Reserva> items = null;
-    private Reserva selected;
+    private co.edu.udea.arqsw.aerolinea.data.dao.SocioFacade ejbFacade;
+    private List<Socio> items = null;
+    private Socio selected;
 
-    public ReservaController() {
+    public SocioController() {
     }
 
-    public Reserva getSelected() {
+    public Socio getSelected() {
         return selected;
     }
 
-    public void setSelected(Reserva selected) {
+    public void setSelected(Socio selected) {
         this.selected = selected;
     }
 
@@ -45,36 +44,36 @@ public class ReservaController implements Serializable {
     protected void initializeEmbeddableKey() {
     }
 
-    private ReservaFacade getFacade() {
+    private SocioFacade getFacade() {
         return ejbFacade;
     }
 
-    public Reserva prepareCreate() {
-        selected = new Reserva();
+    public Socio prepareCreate() {
+        selected = new Socio();
         initializeEmbeddableKey();
         return selected;
     }
 
     public void create() {
-        persist(PersistAction.CREATE, ResourceBundle.getBundle("/Bundle").getString("ReservaCreated"));
+        persist(PersistAction.CREATE, ResourceBundle.getBundle("/Bundle").getString("SocioCreated"));
         if (!JsfUtil.isValidationFailed()) {
             items = null;    // Invalidate list of items to trigger re-query.
         }
     }
 
     public void update() {
-        persist(PersistAction.UPDATE, ResourceBundle.getBundle("/Bundle").getString("ReservaUpdated"));
+        persist(PersistAction.UPDATE, ResourceBundle.getBundle("/Bundle").getString("SocioUpdated"));
     }
 
     public void destroy() {
-        persist(PersistAction.DELETE, ResourceBundle.getBundle("/Bundle").getString("ReservaDeleted"));
+        persist(PersistAction.DELETE, ResourceBundle.getBundle("/Bundle").getString("SocioDeleted"));
         if (!JsfUtil.isValidationFailed()) {
             selected = null; // Remove selection
             items = null;    // Invalidate list of items to trigger re-query.
         }
     }
 
-    public List<Reserva> getItems() {
+    public List<Socio> getItems() {
         if (items == null) {
             items = getFacade().findAll();
         }
@@ -109,25 +108,29 @@ public class ReservaController implements Serializable {
         }
     }
 
-    public List<Reserva> getItemsAvailableSelectMany() {
+    public Socio getSocio(java.lang.Long id) {
+        return getFacade().find(id);
+    }
+
+    public List<Socio> getItemsAvailableSelectMany() {
         return getFacade().findAll();
     }
 
-    public List<Reserva> getItemsAvailableSelectOne() {
+    public List<Socio> getItemsAvailableSelectOne() {
         return getFacade().findAll();
     }
 
-    @FacesConverter(forClass = Reserva.class)
-    public static class ReservaControllerConverter implements Converter {
+    @FacesConverter(forClass = Socio.class)
+    public static class SocioControllerConverter implements Converter {
 
         @Override
         public Object getAsObject(FacesContext facesContext, UIComponent component, String value) {
             if (value == null || value.length() == 0) {
                 return null;
             }
-            ReservaController controller = (ReservaController) facesContext.getApplication().getELResolver().
-                    getValue(facesContext.getELContext(), null, "reservaController");
-            return controller.getFacade().find(getKey(value));
+            SocioController controller = (SocioController) facesContext.getApplication().getELResolver().
+                    getValue(facesContext.getELContext(), null, "socioController");
+            return controller.getSocio(getKey(value));
         }
 
         java.lang.Long getKey(String value) {
@@ -147,11 +150,11 @@ public class ReservaController implements Serializable {
             if (object == null) {
                 return null;
             }
-            if (object instanceof Reserva) {
-                Reserva o = (Reserva) object;
+            if (object instanceof Socio) {
+                Socio o = (Socio) object;
                 return getStringKey(o.getId());
             } else {
-                Logger.getLogger(this.getClass().getName()).log(Level.SEVERE, "object {0} is of type {1}; expected type: {2}", new Object[]{object, object.getClass().getName(), Reserva.class.getName()});
+                Logger.getLogger(this.getClass().getName()).log(Level.SEVERE, "object {0} is of type {1}; expected type: {2}", new Object[]{object, object.getClass().getName(), Socio.class.getName()});
                 return null;
             }
         }

@@ -18,6 +18,10 @@
                         <h:outputText value="#{compraController.selected.cliente}" title="#{bundle.ViewCompraTitle_cliente}"/>
                         <h:outputText value="#{bundle.ViewCompraLabel_pasaje}"/>
                         <h:outputText value="#{compraController.selected.pasaje}" title="#{bundle.ViewCompraTitle_pasaje}"/>
+                        <h:outputText value="#{bundle.ViewCompraLabel_fecha}"/>
+                        <h:outputText value="#{compraController.selected.fecha}" title="#{bundle.ViewCompraTitle_fecha}">
+                            <f:convertDateTime pattern="MM/dd/yyyy" />
+                        </h:outputText>
                     </p:panelGrid>
                     <p:commandButton value="#{bundle.Close}" onclick="CompraViewDialog.hide()"/>
                 </h:panelGroup>

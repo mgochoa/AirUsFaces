@@ -26,6 +26,8 @@
                                            var="pasajeItem"
                                            itemValue="#{pasajeItem}"/>
                         </p:selectOneMenu>
+                        <p:outputLabel value="#{bundle.CreateCompraLabel_fecha}" for="fecha" />
+                        <p:calendar id="fecha" pattern="MM/dd/yyyy" value="#{compraController.selected.fecha}" title="#{bundle.EditCompraTitle_fecha}"  showOn="button"/>
                     </p:panelGrid>
                     <p:commandButton actionListener="#{compraController.create}" value="#{bundle.Save}" update="display,:CompraListForm:datalist,:growl" oncomplete="handleSubmit(args,'CompraCreateDialog');"/>
                     <p:commandButton value="#{bundle.Cancel}" onclick="CompraCreateDialog.hide()"/>

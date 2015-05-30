@@ -14,8 +14,6 @@
                     <p:panelGrid columns="2" rendered="#{pasajeController.selected != null}">
                         <p:outputLabel value="#{bundle.CreatePasajeLabel_id}" for="id" />
                         <p:inputText id="id" value="#{pasajeController.selected.id}" title="#{bundle.CreatePasajeTitle_id}" />
-                        <p:outputLabel value="#{bundle.CreatePasajeLabel_precio}" for="precio" />
-                        <p:inputText id="precio" value="#{pasajeController.selected.precio}" title="#{bundle.CreatePasajeTitle_precio}" />
                         <p:outputLabel value="#{bundle.CreatePasajeLabel_clase}" for="clase" />
                         <p:selectOneMenu id="clase" value="#{pasajeController.selected.clase}" >
                             <f:selectItems value="#{claseController.itemsAvailableSelectOne}"
@@ -28,6 +26,8 @@
                                            var="vueloItem"
                                            itemValue="#{vueloItem}"/>
                         </p:selectOneMenu>
+                        <p:outputLabel value="#{bundle.CreatePasajeLabel_valor}" for="valor" />
+                        <p:inputText id="valor" value="#{pasajeController.selected.valor}" title="#{bundle.CreatePasajeTitle_valor}" />
                     </p:panelGrid>
                     <p:commandButton actionListener="#{pasajeController.create}" value="#{bundle.Save}" update="display,:PasajeListForm:datalist,:growl" oncomplete="handleSubmit(args,'PasajeCreateDialog');"/>
                     <p:commandButton value="#{bundle.Cancel}" onclick="PasajeCreateDialog.hide()"/>
