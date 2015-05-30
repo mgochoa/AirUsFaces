@@ -34,8 +34,8 @@ public class Pasaje implements Serializable {
     @ManyToOne
     private Vuelo vuelo;
 
-    @Column(name="precio")
-    private Long precio;
+    @Column(name = "valor")
+    private Long valor;
 
     public Long getId() {
         return id;
@@ -43,14 +43,6 @@ public class Pasaje implements Serializable {
 
     public void setId(Long id) {
         this.id = id;
-    }
-
-    public Long getPrecio() {
-        return precio;
-    }
-
-    public void setPrecio(Long precio) {
-        this.precio = precio;
     }
 
     @Override
@@ -98,6 +90,20 @@ public class Pasaje implements Serializable {
      */
     public void setVuelo(Vuelo vuelo) {
         this.vuelo = vuelo;
+    }
+
+    /**
+     * @return the valor
+     */
+    public Long getValor() {
+        return valor;
+    }
+
+    /**
+     * @param valor the valor to set
+     */
+    public void setValor(Long valor) {
+        this.valor = valor;
     }
 
 }

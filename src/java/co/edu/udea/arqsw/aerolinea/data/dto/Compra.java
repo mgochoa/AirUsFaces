@@ -6,12 +6,15 @@
 package co.edu.udea.arqsw.aerolinea.data.dto;
 
 import java.io.Serializable;
+import java.util.Date;
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.persistence.Temporal;
 
 /**
  *
@@ -32,6 +35,10 @@ public class Compra implements Serializable {
     @JoinColumn(name = "pasaje")
     @ManyToOne
     private Pasaje pasaje;
+    
+    @Column(name="fecha")
+    @Temporal(javax.persistence.TemporalType.DATE)
+    private Date fecha;
 
     public Long getId() {
         return id;
@@ -92,6 +99,20 @@ public class Compra implements Serializable {
      */
     public void setVuelo(Pasaje pasaje) {
         this.pasaje = pasaje;
+    }
+
+    /**
+     * @return the fecha
+     */
+    public Date getFecha() {
+        return fecha;
+    }
+
+    /**
+     * @param fecha the fecha to set
+     */
+    public void setFecha(Date fecha) {
+        this.fecha = fecha;
     }
 
 }
