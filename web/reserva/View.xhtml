@@ -20,7 +20,7 @@
                         <h:outputText value="#{reservaController.selected.vuelo}" title="#{bundle.ViewReservaTitle_vuelo}"/>
                         <h:outputText value="#{bundle.ViewReservaLabel_fecha}"/>
                         <h:outputText value="#{reservaController.selected.fecha}" title="#{bundle.ViewReservaTitle_fecha}">
-                            <f:convertDateTime pattern="MM/dd/yyyy" />
+                            <f:convertDateTime pattern="MM/dd/yyyy HH:mm:ss" />
                         </h:outputText>
                     </p:panelGrid>
                     <p:commandButton value="#{bundle.Close}" onclick="ReservaViewDialog.hide()"/>

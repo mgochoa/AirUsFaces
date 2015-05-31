@@ -29,7 +29,7 @@
                                            itemValue="#{vueloItem}"/>
                         </p:selectOneMenu>
                         <p:outputLabel value="#{bundle.EditReservaLabel_fecha}" for="fecha" />
-                        <p:calendar id="fecha" pattern="MM/dd/yyyy" value="#{reservaController.selected.fecha}" title="#{bundle.EditReservaTitle_fecha}"  showOn="button"/>
+                        <p:calendar id="fecha" pattern="MM/dd/yyyy HH:mm:ss" value="#{reservaController.selected.fecha}" title="#{bundle.EditReservaTitle_fecha}"  showOn="button"/>
                     </p:panelGrid>
                     <p:commandButton actionListener="#{reservaController.update}" value="#{bundle.Save}" update="display,:ReservaListForm:datalist,:growl" oncomplete="handleSubmit(args, 'ReservaEditDialog');"/>
                     <p:commandButton value="#{bundle.Cancel}" onclick="ReservaEditDialog.hide()"/>

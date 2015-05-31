@@ -95,6 +95,10 @@ public class Compra implements Serializable {
         return pasaje;
     }
 
+    public void setPasaje(Pasaje pasaje) {
+        this.pasaje = pasaje;
+    }
+
     /**
      * @param pasaje the compra to set
      */

@@ -17,7 +17,7 @@
                         <p:outputLabel value="#{bundle.EditVueloLabel_aeropuerto}" for="aeropuerto" />
                         <p:inputText id="aeropuerto" value="#{vueloController.selected.aeropuerto}" title="#{bundle.EditVueloTitle_aeropuerto}" />
                         <p:outputLabel value="#{bundle.EditVueloLabel_horaSalida}" for="horaSalida" />
-                        <p:calendar id="horaSalida" pattern="MM/dd/yyyy" value="#{vueloController.selected.horaSalida}" title="#{bundle.EditVueloTitle_horaSalida}"  showOn="button"/>
+                        <p:calendar id="horaSalida" pattern="MM/dd/yyyy HH:mm:ss" value="#{vueloController.selected.horaSalida}" title="#{bundle.EditVueloTitle_horaSalida}"  showOn="button"/>
                         <p:outputLabel value="#{bundle.EditVueloLabel_origen}" for="origen" />
                         <p:selectOneMenu id="origen" value="#{vueloController.selected.origen}" >
                             <f:selectItem itemLabel="#{bundle.SelectOneMessage}"/>

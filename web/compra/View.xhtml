@@ -20,7 +20,7 @@
                         <h:outputText value="#{compraController.selected.pasaje}" title="#{bundle.ViewCompraTitle_pasaje}"/>
                         <h:outputText value="#{bundle.ViewCompraLabel_fecha}"/>
                         <h:outputText value="#{compraController.selected.fecha}" title="#{bundle.ViewCompraTitle_fecha}">
-                            <f:convertDateTime pattern="MM/dd/yyyy" />
+                            <f:convertDateTime pattern="MM/dd/yyyy HH:mm:ss" />
                         </h:outputText>
                     </p:panelGrid>
                     <p:commandButton value="#{bundle.Close}" onclick="CompraViewDialog.hide()"/>
