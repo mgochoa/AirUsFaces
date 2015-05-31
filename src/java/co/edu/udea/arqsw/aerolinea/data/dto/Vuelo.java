@@ -32,7 +32,7 @@ public class Vuelo implements Serializable {
     @Column(name = "aeropuerto")
     private String aeropuerto;
 
-    @Column(name = "hora")
+    @Column(name = "hora", columnDefinition = "DATETIME")
     @Temporal(TemporalType.TIMESTAMP)
     private Date horaSalida;
 
