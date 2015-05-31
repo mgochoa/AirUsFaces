@@ -15,6 +15,7 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Temporal;
+import javax.persistence.TemporalType;
 
 /**
  *
@@ -35,9 +36,9 @@ public class Compra implements Serializable {
     @JoinColumn(name = "pasaje")
     @ManyToOne
     private Pasaje pasaje;
-    
-    @Column(name="fecha")
-    @Temporal(javax.persistence.TemporalType.DATE)
+
+    @Column(name = "fecha")
+    @Temporal(TemporalType.TIMESTAMP)
     private Date fecha;
 
     public Long getId() {
@@ -70,7 +71,7 @@ public class Compra implements Serializable {
 
     @Override
     public String toString() {
-        return "co.edu.udea.arqsw.aerolinea.dto.Compra[ id=" + id + " ]";
+        return "" + this.id;
     }
 
     /**

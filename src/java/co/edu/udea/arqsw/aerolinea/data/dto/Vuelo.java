@@ -15,6 +15,7 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Temporal;
+import javax.persistence.TemporalType;
 
 /**
  *
@@ -32,7 +33,7 @@ public class Vuelo implements Serializable {
     private String aeropuerto;
 
     @Column(name = "hora")
-    @Temporal(javax.persistence.TemporalType.DATE)
+    @Temporal(TemporalType.TIMESTAMP)
     private Date horaSalida;
 
     @JoinColumn(name = "origen")
@@ -73,7 +74,7 @@ public class Vuelo implements Serializable {
 
     @Override
     public String toString() {
-        return "co.edu.udea.arqsw.aerolinea.dto.Vuelo[ id=" + id + " ]";
+        return this.destino.getNombre() + ", " + this.horaSalida;
     }
 
     /**

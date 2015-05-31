@@ -18,12 +18,13 @@ import javax.persistence.Id;
  */
 @Entity
 public class Lugar implements Serializable {
+
     private static final long serialVersionUID = 1L;
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
-    
-    @Column(name="nombre")
+
+    @Column(name = "nombre")
     private String nombre;
 
     public Long getId() {
@@ -56,7 +57,7 @@ public class Lugar implements Serializable {
 
     @Override
     public String toString() {
-        return "co.edu.udea.arqsw.aerolinea.dto.Lugar[ id=" + id + " ]";
+        return this.nombre.toUpperCase();
     }
 
     /**
@@ -72,5 +73,5 @@ public class Lugar implements Serializable {
     public void setNombre(String nombre) {
         this.nombre = nombre;
     }
-    
+
 }

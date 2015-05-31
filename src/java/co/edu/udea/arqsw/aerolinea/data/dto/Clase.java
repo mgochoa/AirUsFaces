@@ -65,7 +65,7 @@ public class Clase implements Serializable {
 
     @Override
     public String toString() {
-        return "co.edu.udea.arqsw.aerolinea.data.dto.Clase[ id=" + id + " ]";
+        return this.nombre;
     }
 
 }

@@ -82,7 +82,7 @@ public class Cliente implements Serializable {
 
     @Override
     public String toString() {
-        return "co.edu.udea.arqsw.aerolinea.dto.Cliente[ id=" + id + " ]";
+        return this.nombre + " " + this.apellido;
     }
 
     /**

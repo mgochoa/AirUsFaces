@@ -67,7 +67,7 @@ public class Pasaje implements Serializable {
 
     @Override
     public String toString() {
-        return "co.edu.udea.arqsw.aerolinea.dto.Pasaje[ id=" + id + " ]";
+        return ""+this.id;
     }
 
     public Clase getClase() {
